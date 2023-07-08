@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class Main 
+{
+    private static int top = -1;
+    private static int[] Array = new int[10];
+    private static final int SIZE = 10;
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int ch;
+
+        while (true) 
+        {
+            System.out.println("\n1.Push the element\n2.Pop the element\n3.Show\n4.End");
+            System.out.print("\nEnter the choice: ");
+            ch = sc.nextInt();
+
+            switch (ch) {
+                case 1:
+                    push(sc);
+                    break;
+                case 2:
+                    pop();
+                    break;
+                case 3:
+                    show();
+                    break;
+                case 4:
+                    System.exit(0);
+                default:
+                    System.out.println("\nInvalid choice!!");
+            }
+        }
+    }
+
+    public static void push(Scanner scanner) {
+        int x;
+
+        if (top == SIZE - 1) 
+        {
+            System.out.println("\nOverflow!!");
+        }
+        else 
+        {
+            System.out.print("\nEnter the element to be added onto the stack: ");
+            x = scanner.nextInt();
+            top = top + 1;
+            Array[top] = x;
+        }
+    }
+
+    public static void pop() 
+    {
+        if (top == -1) {
+            System.out.println("\nUnderflow!!");
+        } else {
+            System.out.println("\nPopped element: " + Array[top]);
+            top = top - 1;
+        }
+    }
+
+    public static void show() {
+        if (top == -1) {
+            System.out.println("\nUnderflow!!");
+        } else {
+            System.out.println("\nElements present in the stack: ");
+            for (int i = top; i >= 0; --i) 
+            {
+                System.out.println(Array[i]);
+            }
+        }
+    }
+}
+

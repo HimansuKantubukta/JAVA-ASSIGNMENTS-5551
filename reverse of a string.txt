@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class Main 
+{
+    public static void main(String[] args) 
+    {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter string");
+        String name = sc.nextLine();
+        StringBuilder n = new StringBuilder(name);
+
+        int i;
+        char temp;
+        int l;
+        l = n.length();
+        for (i = 0; i < l / 2; i++)
+        {
+            temp = n.charAt(i);
+            n.setCharAt(i, n.charAt(l - i - 1));
+            n.setCharAt(l - i - 1, temp);
+        }
+        System.out.println(n);
+    }
+}
