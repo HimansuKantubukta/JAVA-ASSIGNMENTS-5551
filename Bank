@@ -1,0 +1,526 @@
+class Account
+
+{
+	private int accountNo;
+    private String openedDate;
+    private double balance;
+    
+    public Account(int accountNo, String openedDate, int balance)
+    {
+    	this.accountNo = accountNo;
+        this.openedDate = openedDate;
+        this.balance = balance;
+
+    }
+
+    public int getAccountNo()
+    {
+    	return accountNo;
+    }
+
+    public void setAccountNo(int accountNo)
+   {
+     this.accountNo = accountNo;
+   }
+    public String getOpenedDate()
+   {
+    	return openedDate;
+   }
+   public void setOpenedDate(String openedDate)
+  {
+     this.openedDate = openedDate;
+  }
+  public double getBalance()
+  {
+     return balance;
+  }
+  public void setBalance(double d)
+ {
+	  this.balance = d;
+ }
+
+}
+
+class SavingsAccount extends Account
+
+{
+
+private int minimumDepositAmount;
+
+private int noOfTransactionsPerDay;
+
+public SavingsAccount(int accountNo, String openedDate, int balance, int minimumDepositAmount,
+
+int noOfTransactionsPerDay)
+
+{
+
+super(accountNo, openedDate, balance);
+
+this.minimumDepositAmount = validateminimumDepositAmount(minimumDepositAmount);
+
+this.noOfTransactionsPerDay = validatenoOfTransactionsPerDay(noOfTransactionsPerDay);
+
+}
+
+public int getMinimumDepositAmount()
+
+{
+
+return minimumDepositAmount;
+
+}
+
+public void setMinimumDepositAmount(int minimumDepositAmount)
+
+{
+
+this.minimumDepositAmount = minimumDepositAmount;
+
+}
+
+public int getNoOfTransactionsPerDay()
+
+{
+
+return noOfTransactionsPerDay;
+
+}
+
+public void setNoOfTransactionsPerDay(int noOfTransactionsPerDay)
+
+{
+
+this.noOfTransactionsPerDay = noOfTransactionsPerDay;
+
+}
+
+public int validatenoOfTransactionsPerDay(int noOfTransactionsPerDay)
+
+{
+
+if(noOfTransactionsPerDay<=5)
+
+{
+
+return noOfTransactionsPerDay;
+
+}
+
+throw new RuntimeException("transaction limit is reached");
+
+}
+
+public int validateminimumDepositAmount(int minimumDepositAmount)
+
+{
+
+if(minimumDepositAmount>=1000)
+
+return minimumDepositAmount ;
+
+throw new RuntimeException("minimum deposit amount is 1000");
+
+}
+
+public void transaction(char ttype,int accountNo,double amount)
+
+{
+
+
+switch(ttype)
+
+{
+
+case 'w':
+
+try 
+{
+
+   withdraw(amount, accountNo);
+
+} 
+catch (Exception e) 
+{
+
+System.out.println(e);
+e.printStackTrace();
+
+}
+
+break;
+
+case 'd':
+
+Deposit(amount,accountNo);
+
+}
+
+}
+
+private double withdraw(double amount,int accountNo)
+
+{
+
+if(getBalance()-amount>=getMinimumDepositAmount())
+
+{
+
+
+
+setBalance(getBalance()-amount);
+
+System.out.println("amount after withdrawl   :  "  +getBalance());
+
+return amount;
+
+}
+
+
+throw new RuntimeException("minimum balance");
+
+}
+
+public void Deposit(double amount,int accountNo)
+
+{
+	setBalance(getBalance()+amount);
+    System.out.println("amount after deposit      :   " +getBalance());
+
+}
+
+}
+
+class currentAccount extends Account
+
+{
+
+private int overDraftLimit;
+
+
+
+public currentAccount(int accountNo, String openedDate, int balance, int overDraftLimit)
+
+{
+
+super(accountNo, openedDate, balance);
+
+this.overDraftLimit = validateoverDraftLimit(overDraftLimit);
+
+}
+
+
+
+public int getOverDraftLimit()
+
+{
+
+return overDraftLimit;
+
+}
+
+
+
+public void setOverDraftLimit(int overDraftLimit)
+
+{
+
+this.overDraftLimit = validateoverDraftLimit(overDraftLimit);
+
+}
+
+
+public boolean transaction(char ttype,int accountNo,int amount) throws Exception
+
+{
+
+switch(ttype)
+
+{
+
+case 'w':
+
+withdraw(amount);
+
+break;
+
+case 'd':
+
+Deposit(amount);
+
+
+return true;
+
+
+default:
+
+
+throw new Exception("selection is invalid");
+
+}
+
+return false;
+
+
+
+}
+
+public int validateoverDraftLimit(int overDraftLimit)
+
+{
+
+if(overDraftLimit<=200000)
+
+return overDraftLimit;
+
+throw new RuntimeException("overdraft limit exceeded");
+
+}
+
+public boolean withdraw(double amount) throws Exception
+
+{
+
+if(getBalance()-amount>=1000)
+
+{
+
+
+
+setBalance(getBalance()-amount);
+
+System.out.println("amount after withdrawl    :  " +getBalance());
+
+return true;
+
+}
+
+else
+
+{
+
+throw new Exception("minimum balance");
+
+}
+
+
+}
+
+
+
+public void Deposit(int amount)
+
+{
+
+setBalance(getBalance()+amount);
+
+System.out.println("amount after deposit   :    "+getBalance());
+
+
+}
+
+}
+
+class  Trans
+
+{
+
+
+private int index=0;
+
+private String bankName;
+
+private String branchName;
+
+private Account[]accounts=new Account[10];
+
+
+public Trans(String bankName, String branchName)
+
+{
+
+
+this.bankName = bankName;
+
+this.branchName = branchName;
+
+}
+
+public String getBankName()
+
+{
+
+return bankName;
+
+}
+
+public void setBankName(String bankName)
+
+{
+
+this.bankName = bankName;
+
+}
+
+public String getBranchName()
+
+{
+
+return branchName;
+
+}
+
+public void setBranchName(String branchName)
+
+{
+
+this.branchName = branchName;
+
+}
+
+
+
+
+public boolean addAccount(Account account)
+
+{
+
+if(index<10)
+
+{
+
+accounts[index++]=account;
+
+return true;
+
+
+
+
+}
+
+throw new RuntimeException("you can't add more than ten accounts");
+
+}
+
+public void showAccounts()
+
+{
+
+for(int i=0;i<index;i++)
+
+{
+
+System.out.println();
+
+System.out.println("account number :"+ accounts[i].getAccountNo());
+
+System.out.println("opening date:"+accounts[i].getOpenedDate());
+
+System.out.println("Balance:"+accounts[i].getBalance());
+
+System.out.println();
+
+}
+
+}
+
+}
+
+
+public class Service
+
+{
+
+public static void main(String [] args)
+
+{
+
+currentAccount c=new currentAccount(1234567,"21-april-2002",500000,128);
+
+SavingsAccount s=new SavingsAccount(3257894,"18-april-2002",484586,1500,5);
+
+Trans t=new Trans("state bank","Madhapur");
+
+System.out.println(s.getMinimumDepositAmount());
+System.out.println(s.getNoOfTransactionsPerDay());
+
+
+try {
+
+c.transaction('d', 1234567, 3000);
+
+c.transaction('w', 1234567, 3000);
+
+c.transaction('d',1234567,12345);
+
+s.transaction('d', 3257894, 1234);
+
+s.transaction('w', 3257894, 1234);
+
+
+} 
+catch (Exception e)
+
+{
+
+System.out.println(e);
+e.printStackTrace();
+
+}
+
+
+try 
+
+{
+
+t.addAccount(new currentAccount(1234589,"21-may-2002",500000,1222));
+
+t.addAccount(new SavingsAccount(3257841,"18-june-2021",484586,1500,4));
+
+t.addAccount(new currentAccount(1245467,"21-july-2014",500000,1222));
+
+t.addAccount(new SavingsAccount(2578941,"18-may-2023",484586,1200,4));
+
+t.addAccount(new currentAccount(1451231,"21-january-2022",500000,222));
+
+t.addAccount(new SavingsAccount(1706324,"18-july-2017",484586,1510,4));
+
+t.addAccount(new currentAccount(1451235,"21-march-2004",500000,1222));
+
+t.addAccount(new SavingsAccount(6102833,"18-august-2015",484586,1500,4));
+
+t.addAccount(new currentAccount(4546789,"21-april-2009",500000,1222));
+
+t.addAccount(new SavingsAccount(3810914,"18-september-2011",484516,1580,4));
+
+// t.addAccount(new SavingsAccount(3810924,"18-july-august",484586,1500,4));
+
+// t.addAccount(new SavingsAccount(3256784,"18-april-2010",484586,1500,4));
+
+}
+
+catch (Exception e)
+
+{
+
+
+e.printStackTrace();
+
+}
+
+
+
+
+
+t.showAccounts();
+
+
+
+
+}
+
+}
+
+
+
+
