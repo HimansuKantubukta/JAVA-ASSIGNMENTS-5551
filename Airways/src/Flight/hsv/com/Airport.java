@@ -25,19 +25,7 @@ public class Airport
         return false;
 
     }
-	public void searchFlightsBySourceAndDestination1(String source,String Destination)
-	{
-		if(!flights.contains(source))
-		{
-			if(!flights.contains(Destination))
-			{
-				
-			}
-		}
-		
-		
-		
-	}
+	
 	public ArrayList<Flight> searchFlightsBySourceAndDestination(String source,String destination){
 
 
@@ -46,15 +34,15 @@ public class Airport
 
 
 
-        for(Flight fly: flights) {
+        for(Flight flight: flights) {
 
 
 
-            if(fly.getDestination().equals(destination) && fly.getSource().equals(source)) {
+            if(flight.getDestination().equals(destination) && flight.getSource().equals(source)) {
 
 
 
-                searchResults.add(fly);
+                searchResults.add(flight);
 
 
 
@@ -77,15 +65,15 @@ public void bookTicket(String flightId, Traveller travel)
 
 
 
-        for(Flight fly:flights)
+        for(Flight flight:flights)
 
 
 
-            if(fly.getId()==flightId && fly.getAvailableSeats()>=1)
+            if(flight.getId()==flightId && flight.getAvailableSeats()>=1)
 
 
 
-                fly.setAvailableSeats(fly.getAvailableSeats()-1);
+                flight.setAvailableSeats(flight.getAvailableSeats()-1);
 
             travellers.add(travel);    }
 
