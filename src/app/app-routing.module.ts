@@ -7,6 +7,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { CategoryComponent } from './category/category.component';
 import { ItemsComponent } from './items/items.component';
 import { EpicComponent } from './epic/epic.component';
+import { AnimatedComponent } from './animated/animated.component';
+import { ComicComponent } from './comic/comic.component';
+import { HorrorComponent } from './horror/horror.component';
+import { ThrillerComponent } from './thriller/thriller.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
 
@@ -34,7 +39,23 @@ const routes: Routes = [
   },
   {
     path:"epic",component:EpicComponent
+  },
+  {
+    path:"animated",component:AnimatedComponent
+  },
+  {
+    path:"comic",component:ComicComponent
+  },
+  {
+    path:"horror",component:HorrorComponent
+  },
+  {
+    path:"thriller",component:ThrillerComponent
+  },
+  {
+    path:"",component:LoginComponent
   }
+
 ];
 
 @NgModule({

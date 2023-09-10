@@ -12,6 +12,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { CategoryComponent } from './category/category.component';
 import { ItemsComponent } from './items/items.component';
 import { EpicComponent } from './epic/epic.component';
+import { AnimatedComponent } from './animated/animated.component';
+import { ComicComponent } from './comic/comic.component';
+import { ThrillerComponent } from './thriller/thriller.component';
+import { HorrorComponent } from './horror/horror.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { EpicComponent } from './epic/epic.component';
     LogoutComponent,
     CategoryComponent,
     ItemsComponent,
-    EpicComponent
+    EpicComponent,
+    AnimatedComponent,
+    ComicComponent,
+    ThrillerComponent,
+    HorrorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
