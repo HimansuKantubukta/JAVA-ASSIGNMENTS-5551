@@ -12,6 +12,7 @@ import { ComicComponent } from './comic/comic.component';
 import { HorrorComponent } from './horror/horror.component';
 import { ThrillerComponent } from './thriller/thriller.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
 
@@ -54,6 +55,9 @@ const routes: Routes = [
   },
   {
     path:"",component:LoginComponent
+  },
+  {
+    path:"registration",component:RegistrationComponent
   }
 
 ];
